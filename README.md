@@ -1,4 +1,4 @@
-# Vivid Expense Tracker 🤑
+# Vivid Expense Tracker
 
 A sleek, fast, and fully responsive multi-user personal finance tracker built with Next.js (App Router), PostgreSQL (Drizzle ORM), and Supabase Auth.
 
@@ -16,31 +16,6 @@ A sleek, fast, and fully responsive multi-user personal finance tracker built wi
 
 ---
 
-## Quick Start (Local Development)
+## Quick Start
 
-### 1. Environment Setup
-Copy the example variables:
-```bash
-cp .env.example .env
-```
-Fill in your cloud **Supabase project URL** and **Publishable Key** (`anon`) in the `.env` file.
-
-### 2. Start Local PostgreSQL (Docker)
-Ensure Docker is running, then boot the database container:
-```bash
-docker-compose -f docker/dev/docker-compose.postgres.yml up -d postgres
-```
-
-### 3. Sync & Seed Database
-Initialize your tables and seed default categories:
-```bash
-npm run db:push
-npm run db:seed
-```
-
-### 4. Run Next.js
-Launch the development server:
-```bash
-npm run dev
-```
-Open **[http://localhost:3000/gastos](http://localhost:3000/gastos)** in your browser.
+Open **[https://vivid-expense-tracker.vercel.app/](https://vivid-expense-tracker.vercel.app/)** in your browser.
