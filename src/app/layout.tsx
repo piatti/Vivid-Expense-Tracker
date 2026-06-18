@@ -1,10 +1,10 @@
 import type { Metadata } from "next";
-import { Bricolage_Grotesque } from "next/font/google";
+import { Rethink_Sans } from "next/font/google";
 import "./globals.css";
 import type React from "react"; // Import React
 import { cn } from "@/lib/utils";
 
-const bricolageGrotesque = Bricolage_Grotesque({
+const rethinkSans = Rethink_Sans({
   subsets: ["latin"],
   display: "swap",
 });
@@ -32,7 +32,7 @@ export default function RootLayout({
 }>) {
   return (
     <html lang="en">
-      <body className={cn(bricolageGrotesque.className, "antialiased")}>
+      <body className={cn(rethinkSans.className, "antialiased")}>
         {children}
       </body>
     </html>
