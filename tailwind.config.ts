@@ -11,7 +11,18 @@ export default {
   ],
   theme: {
     extend: {
+      fontFamily: {
+        sans: ['Rethink Sans', 'sans-serif'],
+      },
       colors: {
+        brand: {
+          ink:    '#1E1E1E',
+          paper:  '#FAFAFA',
+          orange: '#FF2B00',
+          blue:   '#316FBE',
+          lilac:  '#C6ACE3',
+          maroon: '#572621',
+        },
         background: "hsl(var(--background))",
         foreground: "hsl(var(--foreground))",
         card: {
