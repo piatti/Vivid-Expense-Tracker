@@ -133,7 +133,7 @@ export default function MoneyTrackerClient({
         id: catId,
         name: cat?.name || "otra",
         emoji: cat?.emoji || "📁",
-        color: cat?.color || "#5c84a0",
+        color: cat?.color || "#1E1E1E",
         value: val,
       };
     })
@@ -274,17 +274,17 @@ export default function MoneyTrackerClient({
                 initial={{ height: 0 }}
                 animate={{ height: `${h}%` }}
                 transition={{ duration: 0.8, ease: "easeOut" }}
-                style={{ opacity, backgroundColor: "#416781" }}
+                style={{ opacity, backgroundColor: "#1E1E1E" }}
                 className="w-full rounded-t-md relative group cursor-pointer min-h-[4px]"
               >
                 {/* Tooltip on hover */}
                 {val > 0 && (
-                  <div className="absolute -top-10 left-50 -translate-x-1/2 bg-[#416781] text-white text-[10px] font-extrabold px-1.5 py-0.5 rounded shadow opacity-0 group-hover:opacity-100 transition-opacity duration-250 z-50 pointer-events-none whitespace-nowrap">
+                  <div className="absolute -top-10 left-50 -translate-x-1/2 bg-brand-ink text-white text-[10px] font-extrabold px-1.5 py-0.5 rounded shadow opacity-0 group-hover:opacity-100 transition-opacity duration-250 z-50 pointer-events-none whitespace-nowrap">
                     ${val.toLocaleString("es-AR", { maximumFractionDigits: 0 })}
                   </div>
                 )}
               </motion.div>
-              <span className="text-[10px] font-extrabold text-[#5c84a0] uppercase mt-2">
+              <span className="text-[10px] font-extrabold text-brand-ink/60 uppercase mt-2">
                 {months[i]}
               </span>
             </div>
@@ -320,7 +320,7 @@ export default function MoneyTrackerClient({
   const detailTotalAmount = sortedDetailExpenses.reduce((sum, e) => sum + e.value, 0);
 
   return (
-    <div className="w-full max-w-lg mx-auto min-h-screen px-4 py-8 flex flex-col font-sans text-[#416781] bg-[#f5f9f9]">
+    <div className="w-full max-w-lg mx-auto min-h-screen px-4 py-8 flex flex-col font-sans text-brand-ink bg-gradient-to-b from-[#FAFAFA] from-[6.59%] to-[#D9E6F5] to-100%">
       <AnimatePresence mode="wait">
         {selectedCategoryDetail === null ? (
           // MAIN DASHBOARD VIEW
@@ -333,7 +333,7 @@ export default function MoneyTrackerClient({
             className="flex-1 flex flex-col w-full"
           >
             {/* Top Navigation Tab System */}
-            <div className="flex justify-center gap-1 my-4 bg-[#416781]/5 p-1 rounded-full w-fit mx-auto relative">
+            <div className="flex justify-center gap-1 my-4 bg-brand-ink/5 p-1 rounded-full w-fit mx-auto relative">
               {(["monthly", "yearly"] as const).map((tab) => (
                 <button
                   key={tab}
@@ -342,7 +342,7 @@ export default function MoneyTrackerClient({
                     setSelectedCategoryDetail(null);
                   }}
                   className={`relative z-10 px-6 py-2 rounded-full text-xs font-extrabold uppercase tracking-wide transition-colors duration-300 ${
-                    currentView === tab ? "text-[#416781]" : "text-[#5c84a0] opacity-70"
+                    currentView === tab ? "text-brand-ink" : "text-brand-ink/60 opacity-70"
                   }`}
                 >
                   {currentView === tab && (
@@ -361,10 +361,10 @@ export default function MoneyTrackerClient({
 
             {/* Hero Section */}
             <header className="py-6 text-center">
-              <div className="text-base font-semibold text-[#5c84a0] capitalize flex items-center justify-center gap-4 mb-1">
+              <div className="text-base font-semibold text-brand-ink/60 capitalize flex items-center justify-center gap-4 mb-1">
                 <button
                   onClick={() => (currentView === "monthly" ? changeMonth(-1) : changeYear(-1))}
-                  className="p-1 text-[#5c84a0] hover:text-[#416781] transition-colors"
+                  className="p-1 text-brand-ink/60 hover:text-brand-ink transition-colors"
                 >
                   <ChevronLeft size={20} />
                 </button>
@@ -375,7 +375,7 @@ export default function MoneyTrackerClient({
                 </span>
                 <button
                   onClick={() => (currentView === "monthly" ? changeMonth(1) : changeYear(1))}
-                  className="p-1 text-[#5c84a0] hover:text-[#416781] transition-colors"
+                  className="p-1 text-brand-ink/60 hover:text-brand-ink transition-colors"
                 >
                   <ChevronRight size={20} />
                 </button>
@@ -385,7 +385,7 @@ export default function MoneyTrackerClient({
                 key={totalAmount}
                 initial={{ scale: 0.95, opacity: 0.8 }}
                 animate={{ scale: 1, opacity: 1 }}
-                className="text-5xl font-extrabold tracking-tight text-[#416781] my-3"
+                className="text-5xl font-extrabold tracking-tight text-brand-ink my-3"
               >
                 ${totalAmount.toLocaleString("es-AR", { minimumFractionDigits: 2, maximumFractionDigits: 2 })}
               </motion.div>
@@ -394,7 +394,7 @@ export default function MoneyTrackerClient({
                 <motion.button
                   whileTap={{ scale: 0.97 }}
                   onClick={handleOpenAdd}
-                  className="btn bg-[#f2440f] text-white font-extrabold text-sm px-8 py-3 rounded-full shadow-md hover:shadow-lg transition duration-200 mt-2 inline-flex items-center gap-2"
+                  className="btn bg-brand-ink text-white font-extrabold text-sm px-8 py-3 rounded-full shadow-md hover:shadow-lg transition duration-200 mt-2 inline-flex items-center gap-2"
                 >
                   <Plus size={16} />
                   Nuevo Gasto
@@ -404,13 +404,13 @@ export default function MoneyTrackerClient({
 
             {/* Visual Chart Breakdown */}
             {currentView === "monthly" && (
-              <section className="mb-6 bg-white p-5 rounded-[28px] border border-[#416781]/5 shadow-sm">
-                <h2 className="text-[11px] uppercase tracking-widest font-extrabold text-[#5c84a0] mb-3">
+              <section className="mb-6 bg-white p-5 rounded-[28px] border border-brand-ink/5 shadow-sm">
+                <h2 className="text-[11px] uppercase tracking-widest font-extrabold text-brand-ink/60 mb-3">
                   Análisis mensual
                 </h2>
                 {totalAmount > 0 ? (
                   <div>
-                    <div className="h-10 w-full bg-[#f5f9f9] rounded-xl flex overflow-hidden border border-[#416781]/5 shadow-inner">
+                    <div className="h-10 w-full bg-[#FAFAFA] rounded-xl flex overflow-hidden border border-brand-ink/5 shadow-inner">
                       {sortedCategoryBreakdown.map((cat) => {
                         const percentage = (cat.value / totalAmount) * 100;
                         return (
@@ -432,7 +432,7 @@ export default function MoneyTrackerClient({
                     {/* Legend */}
                     <div className="flex flex-wrap gap-x-3 gap-y-2 mt-4">
                       {sortedCategoryBreakdown.map((cat) => (
-                        <div key={cat.id} className="flex items-center gap-1.5 text-[10px] font-extrabold text-[#5c84a0]">
+                        <div key={cat.id} className="flex items-center gap-1.5 text-[10px] font-extrabold text-brand-ink/60">
                           <div className="w-2.5 h-2.5 rounded-sm" style={{ backgroundColor: cat.color }} />
                           <span className="capitalize">{cat.name}</span>
                         </div>
@@ -440,7 +440,7 @@ export default function MoneyTrackerClient({
                     </div>
                   </div>
                 ) : (
-                  <div className="text-center py-6 text-xs text-[#5c84a0] font-semibold opacity-60">
+                  <div className="text-center py-6 text-xs text-brand-ink/60 font-semibold opacity-60">
                     Sin gastos este mes para analizar
                   </div>
                 )}
@@ -449,8 +449,8 @@ export default function MoneyTrackerClient({
 
             {/* Yearly Chart Evolve */}
             {currentView === "yearly" && (
-              <section className="mb-6 bg-white p-5 rounded-[28px] border border-[#416781]/5 shadow-sm">
-                <h2 className="text-[11px] uppercase tracking-widest font-extrabold text-[#5c84a0] mb-2">
+              <section className="mb-6 bg-white p-5 rounded-[28px] border border-brand-ink/5 shadow-sm">
+                <h2 className="text-[11px] uppercase tracking-widest font-extrabold text-brand-ink/60 mb-2">
                   Evolución mensual
                 </h2>
                 {renderYearlyChart()}
@@ -459,7 +459,7 @@ export default function MoneyTrackerClient({
 
             {/* Categories Breakdown List */}
             <section className="flex-1 flex flex-col mb-8">
-              <h2 className="text-[11px] uppercase tracking-widest font-extrabold text-[#5c84a0] mb-3 px-1">
+              <h2 className="text-[11px] uppercase tracking-widest font-extrabold text-brand-ink/60 mb-3 px-1">
                 Distribución por categoría
               </h2>
               {sortedCategoryBreakdown.length > 0 ? (
@@ -469,29 +469,29 @@ export default function MoneyTrackerClient({
                       key={cat.id}
                       whileTap={{ scale: 0.99 }}
                       onClick={() => currentView === "monthly" && setSelectedCategoryDetail(cat.id)}
-                      className={`bg-white p-4.5 rounded-[18px] flex justify-between items-center border border-[#416781]/5 hover:border-[#416781]/15 transition-all shadow-sm ${
+                      className={`bg-white p-4.5 rounded-[18px] flex justify-between items-center border border-brand-ink/5 hover:border-brand-ink/15 transition-all shadow-sm ${
                         currentView === "monthly" ? "cursor-pointer" : "pointer-events-none"
                       }`}
                     >
                       <div className="flex items-center gap-3">
                         <span className="text-2xl">{cat.emoji}</span>
                         <div className="flex flex-col">
-                          <span className="font-bold text-[#416781] text-sm capitalize">{cat.name}</span>
+                          <span className="font-bold text-brand-ink text-sm capitalize">{cat.name}</span>
                           {currentView === "yearly" && (
-                            <span className="text-[9px] font-bold text-[#5c84a0] uppercase tracking-wider">
+                            <span className="text-[9px] font-bold text-brand-ink/60 uppercase tracking-wider">
                               {((cat.value / totalAmount) * 100).toFixed(0)}% del año
                             </span>
                           )}
                         </div>
                       </div>
-                      <div className="font-extrabold text-sm text-[#416781]">
+                      <div className="font-extrabold text-sm text-brand-ink">
                         ${cat.value.toLocaleString("es-AR", { maximumFractionDigits: 0 })}
                       </div>
                     </motion.div>
                   ))}
                 </div>
               ) : (
-                <div className="text-center py-16 bg-white rounded-[28px] border border-[#416781]/5 shadow-sm text-xs text-[#5c84a0] font-bold opacity-60">
+                <div className="text-center py-16 bg-white rounded-[28px] border border-brand-ink/5 shadow-sm text-xs text-brand-ink/60 font-bold opacity-60">
                   Sin gastos registrados aún
                 </div>
               )}
@@ -501,7 +501,7 @@ export default function MoneyTrackerClient({
             <button
               onClick={exportToCsv}
               disabled={expenses.length === 0}
-              className="w-full flex items-center justify-center gap-2 border-2 border-[#5c84a0]/30 hover:border-[#5c84a0]/50 text-[#5c84a0] font-extrabold text-xs py-3 rounded-full uppercase tracking-wider transition duration-200 mb-8 bg-transparent disabled:opacity-50 disabled:pointer-events-none"
+              className="w-full flex items-center justify-center gap-2 border-2 border-brand-ink/60/30 hover:border-brand-ink/60/50 text-brand-ink/60 font-extrabold text-xs py-3 rounded-full uppercase tracking-wider transition duration-200 mb-8 bg-transparent disabled:opacity-50 disabled:pointer-events-none"
             >
               <Download size={14} />
               Exportar a CSV
@@ -520,7 +520,7 @@ export default function MoneyTrackerClient({
             {/* Navigation back */}
             <button
               onClick={() => setSelectedCategoryDetail(null)}
-              className="flex items-center gap-1.5 font-extrabold text-xs text-[#f2440f] uppercase tracking-wider mb-6 w-fit bg-transparent border-none py-2"
+              className="flex items-center gap-1.5 font-extrabold text-xs text-brand-ink uppercase tracking-wider mb-6 w-fit bg-transparent border-none py-2"
             >
               <ArrowLeft size={14} />
               Volver
@@ -530,18 +530,18 @@ export default function MoneyTrackerClient({
             <header className="flex flex-col items-start mb-6">
               <div className="flex items-center gap-2 mb-2">
                 <span className="text-3xl">{selectedCategoryObj?.emoji || "📁"}</span>
-                <h1 className="text-[11px] uppercase tracking-widest font-extrabold text-[#5c84a0] capitalize">
+                <h1 className="text-[11px] uppercase tracking-widest font-extrabold text-brand-ink/60 capitalize">
                   {selectedCategoryObj?.name}
                 </h1>
               </div>
-              <p className="text-4xl font-extrabold text-[#416781]">
+              <p className="text-4xl font-extrabold text-brand-ink">
                 ${detailTotalAmount.toLocaleString("es-AR", { minimumFractionDigits: 2, maximumFractionDigits: 2 })}
               </p>
             </header>
 
             {/* Sorting panel */}
-            <div className="flex justify-between items-center bg-[#416781]/5 px-4 py-2.5 rounded-full mb-4">
-              <span className="text-[10px] font-extrabold text-[#5c84a0] uppercase tracking-wider flex items-center gap-1">
+            <div className="flex justify-between items-center bg-brand-ink/5 px-4 py-2.5 rounded-full mb-4">
+              <span className="text-[10px] font-extrabold text-brand-ink/60 uppercase tracking-wider flex items-center gap-1">
                 <ArrowUpDown size={12} />
                 Ordenar por
               </span>
@@ -549,7 +549,7 @@ export default function MoneyTrackerClient({
                 <select
                   value={sortField}
                   onChange={(e) => setSortField(e.target.value as any)}
-                  className="bg-transparent border-none text-[11px] font-extrabold text-[#416781] outline-none cursor-pointer capitalize"
+                  className="bg-transparent border-none text-[11px] font-extrabold text-brand-ink outline-none cursor-pointer capitalize"
                 >
                   <option value="date">Fecha</option>
                   <option value="value">Monto</option>
@@ -557,7 +557,7 @@ export default function MoneyTrackerClient({
                 </select>
                 <button
                   onClick={() => setSortOrder((o) => (o === "asc" ? "desc" : "asc"))}
-                  className="text-[10px] font-extrabold text-[#f2440f] bg-white px-2 py-0.5 rounded shadow-sm border border-black/5"
+                  className="text-[10px] font-extrabold text-brand-ink bg-white px-2 py-0.5 rounded shadow-sm border border-black/5"
                 >
                   {sortOrder === "asc" ? "Asc" : "Desc"}
                 </button>
@@ -572,11 +572,11 @@ export default function MoneyTrackerClient({
                     key={exp.id}
                     whileTap={{ scale: 0.99 }}
                     onClick={() => handleOpenEdit(exp)}
-                    className="bg-white p-4.5 rounded-[18px] flex justify-between items-center border border-[#416781]/5 hover:border-[#416781]/15 transition-all shadow-sm cursor-pointer"
+                    className="bg-white p-4.5 rounded-[18px] flex justify-between items-center border border-brand-ink/5 hover:border-brand-ink/15 transition-all shadow-sm cursor-pointer"
                   >
                     <div>
-                      <div className="font-bold text-sm text-[#416781]">{exp.title}</div>
-                      <div className="text-[10px] font-bold text-[#5c84a0] mt-1">
+                      <div className="font-bold text-sm text-brand-ink">{exp.title}</div>
+                      <div className="text-[10px] font-bold text-brand-ink/60 mt-1">
                         {new Date(exp.date).toLocaleDateString("es-AR", {
                           day: "numeric",
                           month: "short",
@@ -584,13 +584,13 @@ export default function MoneyTrackerClient({
                         })}
                       </div>
                     </div>
-                    <div className="font-extrabold text-sm text-[#f2440f]">
+                    <div className="font-extrabold text-sm text-brand-ink">
                       ${exp.value.toLocaleString("es-AR")}
                     </div>
                   </motion.div>
                 ))
               ) : (
-                <div className="text-center py-16 bg-white rounded-[28px] border border-[#416781]/5 shadow-sm text-xs text-[#5c84a0] font-bold opacity-60">
+                <div className="text-center py-16 bg-white rounded-[28px] border border-brand-ink/5 shadow-sm text-xs text-brand-ink/60 font-bold opacity-60">
                   Sin gastos registrados en esta categoría
                 </div>
               )}
@@ -609,7 +609,7 @@ export default function MoneyTrackerClient({
               animate={{ opacity: 1 }}
               exit={{ opacity: 0 }}
               onClick={() => setIsExpenseModalOpen(false)}
-              className="fixed inset-0 bg-[#416781]/40 backdrop-blur-md z-40"
+              className="fixed inset-0 bg-brand-ink/40 backdrop-blur-md z-40"
             />
             {/* Sheet Content */}
             <motion.div
@@ -617,17 +617,17 @@ export default function MoneyTrackerClient({
               animate={{ y: 0 }}
               exit={{ y: "100%" }}
               transition={{ type: "spring", damping: 25, stiffness: 220 }}
-              className="fixed bottom-0 left-0 right-0 max-w-lg mx-auto bg-white rounded-t-[28px] p-6 shadow-2xl z-50 flex flex-col gap-4 border-t border-[#416781]/10"
+              className="fixed bottom-0 left-0 right-0 max-w-lg mx-auto bg-white rounded-t-[28px] p-6 shadow-2xl z-50 flex flex-col gap-4 border-t border-brand-ink/10"
             >
               <div className="flex justify-between items-center mb-1">
-                <h3 className="text-lg font-extrabold text-[#416781]">
+                <h3 className="text-lg font-extrabold text-brand-ink">
                   {editingExpenseId ? "Editar Gasto" : "Nuevo Gasto"}
                 </h3>
                 {editingExpenseId && (
                   <button
                     type="button"
                     onClick={() => setIsConfirmDeleteOpen(true)}
-                    className="p-2 text-[#f2440f] hover:bg-[#f2440f]/5 rounded-xl transition"
+                    className="p-2 text-brand-ink hover:bg-brand-ink/5 rounded-xl transition"
                     aria-label="Eliminar gasto"
                   >
                     <Trash2 size={20} />
@@ -637,7 +637,7 @@ export default function MoneyTrackerClient({
 
               <form onSubmit={handleSaveExpense} className="flex flex-col gap-4">
                 <div className="flex flex-col gap-1">
-                  <label htmlFor="expenseTitle" className="text-[10px] font-extrabold text-[#5c84a0] uppercase tracking-wider">
+                  <label htmlFor="expenseTitle" className="text-[10px] font-extrabold text-brand-ink/60 uppercase tracking-wider">
                     Concepto
                   </label>
                   <input
@@ -646,23 +646,23 @@ export default function MoneyTrackerClient({
                     placeholder="Concepto (ej. Supermercado)"
                     value={expenseTitle}
                     onChange={(e) => setExpenseTitle(e.target.value)}
-                    className="w-full bg-[#f5f9f9] border-2 border-transparent focus:border-[#416781]/25 px-4 py-3 rounded-2xl outline-none font-bold text-sm text-[#416781] transition-all"
+                    className="w-full bg-[#FAFAFA] border-2 border-transparent focus:border-brand-ink/25 px-4 py-3 rounded-2xl outline-none font-bold text-sm text-brand-ink transition-all"
                   />
                 </div>
 
                 <div className="flex flex-col gap-1">
-                  <label htmlFor="expenseValue" className="text-[10px] font-extrabold text-[#5c84a0] uppercase tracking-wider">
+                  <label htmlFor="expenseValue" className="text-[10px] font-extrabold text-brand-ink/60 uppercase tracking-wider">
                     Importe ($)
                   </label>
                   <div className="relative flex items-center">
-                    <span className="absolute left-4 font-bold text-[#5c84a0]">$</span>
+                    <span className="absolute left-4 font-bold text-brand-ink/60">$</span>
                     <input
                       type="text"
                       id="expenseValue"
                       placeholder="0.00 (soporta formulas ej: 1500+300)"
                       value={expenseValue}
                       onChange={(e) => setExpenseValue(e.target.value)}
-                      className="w-full bg-[#f5f9f9] border-2 border-transparent focus:border-[#416781]/25 pl-8 pr-4 py-3 rounded-2xl outline-none font-bold text-sm text-[#416781] transition-all"
+                      className="w-full bg-[#FAFAFA] border-2 border-transparent focus:border-brand-ink/25 pl-8 pr-4 py-3 rounded-2xl outline-none font-bold text-sm text-brand-ink transition-all"
                       required
                     />
                   </div>
@@ -670,7 +670,7 @@ export default function MoneyTrackerClient({
 
                 {/* Category Pills Selector */}
                 <div className="flex flex-col gap-1">
-                  <span className="text-[10px] font-extrabold text-[#5c84a0] uppercase tracking-wider mb-1">
+                  <span className="text-[10px] font-extrabold text-brand-ink/60 uppercase tracking-wider mb-1">
                     Categoría
                   </span>
                   <div className="grid grid-cols-4 gap-2 max-h-48 overflow-y-auto pr-1">
@@ -681,8 +681,8 @@ export default function MoneyTrackerClient({
                         onClick={() => setSelectedCategoryId(cat.id)}
                         className={`p-2.5 rounded-xl border-2 text-center transition flex flex-col items-center gap-0.5 relative group ${
                           selectedCategoryId === cat.id
-                            ? "border-[#416781] bg-white shadow-sm"
-                            : "border-transparent bg-[#f5f9f9] hover:bg-[#f5f9f9]/80"
+                            ? "border-brand-ink bg-white shadow-sm"
+                            : "border-transparent bg-[#FAFAFA] hover:bg-[#FAFAFA]/80"
                         }`}
                       >
                         {/* Delete customized categories pill button */}
@@ -690,13 +690,13 @@ export default function MoneyTrackerClient({
                           <button
                             type="button"
                             onClick={(e) => handleDeleteCategory(cat.id, e)}
-                            className="absolute -top-1 right-1 bg-[#f2440f] text-white w-4 h-4 rounded-full flex items-center justify-center text-[10px] font-extrabold shadow z-20 border border-white"
+                            className="absolute -top-1 right-1 bg-brand-ink text-white w-4 h-4 rounded-full flex items-center justify-center text-[10px] font-extrabold shadow z-20 border border-white"
                           >
                             ×
                           </button>
                         )}
                         <span className="text-lg">{cat.emoji}</span>
-                        <span className="text-[9px] font-extrabold capitalize text-[#5c84a0] truncate max-w-full">
+                        <span className="text-[9px] font-extrabold capitalize text-brand-ink/60 truncate max-w-full">
                           {cat.name}
                         </span>
                       </button>
@@ -705,10 +705,10 @@ export default function MoneyTrackerClient({
                     <button
                       type="button"
                       onClick={() => setIsNewCatModalOpen(true)}
-                      className="p-2.5 rounded-xl border-2 border-dashed border-[#5c84a0]/30 hover:border-[#5c84a0]/50 text-center transition flex flex-col items-center justify-center gap-0.5"
+                      className="p-2.5 rounded-xl border-2 border-dashed border-brand-ink/60/30 hover:border-brand-ink/60/50 text-center transition flex flex-col items-center justify-center gap-0.5"
                     >
-                      <Plus size={18} className="text-[#5c84a0]" />
-                      <span className="text-[9px] font-extrabold text-[#5c84a0] uppercase tracking-wider">
+                      <Plus size={18} className="text-brand-ink/60" />
+                      <span className="text-[9px] font-extrabold text-brand-ink/60 uppercase tracking-wider">
                         Nueva
                       </span>
                     </button>
@@ -718,14 +718,14 @@ export default function MoneyTrackerClient({
                 <div className="grid grid-cols-2 gap-3 mt-4">
                   <button
                     type="submit"
-                    className="w-full bg-[#f2440f] text-white font-extrabold py-3.5 rounded-full text-xs uppercase tracking-wider shadow hover:shadow-md transition"
+                    className="w-full bg-brand-ink text-white font-extrabold py-3.5 rounded-full text-xs uppercase tracking-wider shadow hover:shadow-md transition"
                   >
                     {editingExpenseId ? "Actualizar" : "Guardar"}
                   </button>
                   <button
                     type="button"
                     onClick={() => setIsExpenseModalOpen(false)}
-                    className="w-full border-2 border-[#5c84a0]/25 text-[#5c84a0] font-extrabold py-3.5 rounded-full text-xs uppercase tracking-wider bg-transparent hover:bg-[#f5f9f9] transition"
+                    className="w-full border-2 border-brand-ink/60/25 text-brand-ink/60 font-extrabold py-3.5 rounded-full text-xs uppercase tracking-wider bg-transparent hover:bg-[#FAFAFA] transition"
                   >
                     Cancelar
                   </button>
@@ -745,37 +745,37 @@ export default function MoneyTrackerClient({
               animate={{ opacity: 1 }}
               exit={{ opacity: 0 }}
               onClick={() => setIsNewCatModalOpen(false)}
-              className="fixed inset-0 bg-[#416781]/40 backdrop-blur-md z-[60]"
+              className="fixed inset-0 bg-brand-ink/40 backdrop-blur-md z-[60]"
             />
             <motion.div
               initial={{ y: "100%" }}
               animate={{ y: 0 }}
               exit={{ y: "100%" }}
               transition={{ type: "spring", damping: 25, stiffness: 220 }}
-              className="fixed bottom-0 left-0 right-0 max-w-sm mx-auto bg-white rounded-t-[28px] p-6 shadow-2xl z-[70] border-t border-[#416781]/10 flex flex-col gap-4"
+              className="fixed bottom-0 left-0 right-0 max-w-sm mx-auto bg-white rounded-t-[28px] p-6 shadow-2xl z-[70] border-t border-brand-ink/10 flex flex-col gap-4"
             >
-              <h3 className="text-base font-extrabold text-[#416781]">Nueva Categoría</h3>
+              <h3 className="text-base font-extrabold text-brand-ink">Nueva Categoría</h3>
               <form onSubmit={handleCreateCategory} className="flex flex-col gap-4">
                 <div className="flex gap-3">
                   <input
                     type="text"
                     value={newCatEmoji}
                     readOnly
-                    className="w-14 bg-[#f5f9f9] text-center text-xl font-bold rounded-2xl border-none outline-none py-3"
+                    className="w-14 bg-[#FAFAFA] text-center text-xl font-bold rounded-2xl border-none outline-none py-3"
                   />
                   <input
                     type="text"
                     placeholder="Nombre (ej. Mascotas)"
                     value={newCatName}
                     onChange={(e) => setNewCatName(e.target.value)}
-                    className="flex-1 bg-[#f5f9f9] border-2 border-transparent focus:border-[#416781]/25 px-4 py-3 rounded-2xl outline-none font-bold text-sm text-[#416781] transition-all"
+                    className="flex-1 bg-[#FAFAFA] border-2 border-transparent focus:border-brand-ink/25 px-4 py-3 rounded-2xl outline-none font-bold text-sm text-brand-ink transition-all"
                     required
                   />
                 </div>
 
                 {/* Emojis selection grid */}
                 <div className="flex flex-col gap-1.5">
-                  <span className="text-[10px] font-extrabold text-[#5c84a0] uppercase tracking-wider mb-0.5">
+                  <span className="text-[10px] font-extrabold text-brand-ink/60 uppercase tracking-wider mb-0.5">
                     Sugerencias de Emoji
                   </span>
                   <div className="grid grid-cols-6 gap-2 max-h-36 overflow-y-auto pr-1">
@@ -786,8 +786,8 @@ export default function MoneyTrackerClient({
                         onClick={() => setNewCatEmoji(emoji)}
                         className={`text-xl p-2 rounded-xl transition ${
                           newCatEmoji === emoji
-                            ? "bg-[#416781]/15 scale-105 shadow-sm"
-                            : "bg-[#f5f9f9] hover:bg-[#f5f9f9]/80"
+                            ? "bg-brand-ink/15 scale-105 shadow-sm"
+                            : "bg-[#FAFAFA] hover:bg-[#FAFAFA]/80"
                         }`}
                       >
                         {emoji}
@@ -799,14 +799,14 @@ export default function MoneyTrackerClient({
                 <div className="grid grid-cols-2 gap-3 mt-2">
                   <button
                     type="submit"
-                    className="w-full bg-[#f2440f] text-white font-extrabold py-3 rounded-full text-xs uppercase tracking-wider shadow hover:shadow-md transition"
+                    className="w-full bg-brand-ink text-white font-extrabold py-3 rounded-full text-xs uppercase tracking-wider shadow hover:shadow-md transition"
                   >
                     Añadir
                   </button>
                   <button
                     type="button"
                     onClick={() => setIsNewCatModalOpen(false)}
-                    className="w-full border-2 border-[#5c84a0]/25 text-[#5c84a0] font-extrabold py-3 rounded-full text-xs uppercase tracking-wider bg-transparent hover:bg-[#f5f9f9] transition"
+                    className="w-full border-2 border-brand-ink/60/25 text-brand-ink/60 font-extrabold py-3 rounded-full text-xs uppercase tracking-wider bg-transparent hover:bg-[#FAFAFA] transition"
                   >
                     Cancelar
                   </button>
@@ -835,21 +835,21 @@ export default function MoneyTrackerClient({
               transition={{ duration: 0.2 }}
               className="fixed top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[calc(100%-40px)] max-w-[340px] bg-white rounded-3xl p-6 shadow-2xl z-[110] border border-black/5 text-center flex flex-col gap-4"
             >
-              <p className="font-semibold text-sm text-[#416781] leading-relaxed px-2">
+              <p className="font-semibold text-sm text-brand-ink leading-relaxed px-2">
                 ¿Estás seguro de que querés eliminar este gasto?
               </p>
               <div className="flex gap-2">
                 <button
                   type="button"
                   onClick={handleDeleteExpense}
-                  className="flex-1 bg-[#f2440f] text-white font-extrabold py-3 rounded-full text-xs uppercase tracking-wider shadow"
+                  className="flex-1 bg-brand-ink text-white font-extrabold py-3 rounded-full text-xs uppercase tracking-wider shadow"
                 >
                   Sí, borrar
                 </button>
                 <button
                   type="button"
                   onClick={() => setIsConfirmDeleteOpen(false)}
-                  className="flex-1 border-2 border-[#5c84a0]/25 text-[#5c84a0] font-extrabold py-3 rounded-full text-xs uppercase tracking-wider bg-transparent hover:bg-[#f5f9f9]"
+                  className="flex-1 border-2 border-brand-ink/60/25 text-brand-ink/60 font-extrabold py-3 rounded-full text-xs uppercase tracking-wider bg-transparent hover:bg-[#FAFAFA]"
                 >
                   No
                 </button>
