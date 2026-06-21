@@ -332,8 +332,8 @@ export default function MoneyTrackerClient({
             transition={{ duration: 0.25 }}
             className="flex-1 flex flex-col w-full"
           >
-            {/* Top Navigation Tab System */}
-            <div className="flex justify-center gap-1 my-4 bg-brand-ink/5 p-1 rounded-full w-fit mx-auto relative">
+            {/* Top Navigation Tab System — underline style */}
+            <div className="flex justify-center gap-6 my-6">
               {(["monthly", "yearly"] as const).map((tab) => (
                 <button
                   key={tab}
@@ -341,65 +341,69 @@ export default function MoneyTrackerClient({
                     setCurrentView(tab);
                     setSelectedCategoryDetail(null);
                   }}
-                  className={`relative z-10 px-6 py-2 rounded-full text-xs font-extrabold uppercase tracking-wide transition-colors duration-300 ${
-                    currentView === tab ? "text-brand-ink" : "text-brand-ink/60 opacity-70"
+                  className={`pb-1 text-sm font-semibold border-b-2 transition-colors duration-300 ${
+                    currentView === tab
+                      ? "text-brand-ink border-brand-ink"
+                      : "text-brand-ink/30 border-transparent"
                   }`}
                 >
-                  {currentView === tab && (
-                    <motion.div
-                      layoutId="activeTab"
-                      transition={{ type: "spring", stiffness: 350, damping: 30 }}
-                      className="absolute inset-0 bg-white rounded-full shadow-sm"
-                    />
-                  )}
-                  <span className="relative z-20">
-                    {tab === "monthly" ? "Mensual" : "Anual"}
-                  </span>
+                  {tab === "monthly" ? "Mensual" : "Anual"}
                 </button>
               ))}
             </div>
 
             {/* Hero Section */}
-            <header className="py-6 text-center">
-              <div className="text-base font-semibold text-brand-ink/60 capitalize flex items-center justify-center gap-4 mb-1">
+            <header className="pt-2 pb-6 text-center">
+              {/* Period selector: arrows + label, uppercase, 60% opacity */}
+              <div className="flex items-center justify-center gap-5 mb-2">
                 <button
                   onClick={() => (currentView === "monthly" ? changeMonth(-1) : changeYear(-1))}
-                  className="p-1 text-brand-ink/60 hover:text-brand-ink transition-colors"
+                  className="text-brand-ink/60 hover:text-brand-ink transition-colors"
+                  aria-label="Anterior"
                 >
-                  <ChevronLeft size={20} />
+                  <ChevronLeft size={18} strokeWidth={2.5} />
                 </button>
-                <span className="min-w-[120px] inline-block font-extrabold">
+                <span className="min-w-[100px] inline-block text-2xl font-normal uppercase tracking-tight text-brand-ink/60">
                   {currentView === "monthly"
                     ? viewDate.toLocaleString("es-AR", { month: "long" })
                     : viewDate.getFullYear()}
                 </span>
                 <button
                   onClick={() => (currentView === "monthly" ? changeMonth(1) : changeYear(1))}
-                  className="p-1 text-brand-ink/60 hover:text-brand-ink transition-colors"
+                  className="text-brand-ink/60 hover:text-brand-ink transition-colors"
+                  aria-label="Siguiente"
                 >
-                  <ChevronRight size={20} />
+                  <ChevronRight size={18} strokeWidth={2.5} />
                 </button>
               </div>
 
-              <motion.div
-                key={totalAmount}
-                initial={{ scale: 0.95, opacity: 0.8 }}
-                animate={{ scale: 1, opacity: 1 }}
-                className="text-5xl font-extrabold tracking-tight text-brand-ink my-3"
-              >
-                ${totalAmount.toLocaleString("es-AR", { minimumFractionDigits: 2, maximumFractionDigits: 2 })}
-              </motion.div>
+              {/* Big number: number is centered; $ sign floats to its left without affecting centering */}
+              <div className="flex justify-center w-full">
+                <motion.div
+                  key={totalAmount}
+                  initial={{ scale: 0.95, opacity: 0.8 }}
+                  animate={{ scale: 1, opacity: 1 }}
+                  className="relative inline-flex items-center"
+                >
+                  <span className="text-8xl font-normal tracking-tight text-brand-ink">
+                    {totalAmount.toLocaleString("es-AR", { minimumFractionDigits: 0, maximumFractionDigits: 0 })}
+                  </span>
+                  <span className="absolute right-full top-1/2 -translate-y-1/2 mr-1 text-4xl font-medium text-brand-ink">
+                    $
+                  </span>
+                </motion.div>
+              </div>
 
               {currentView === "monthly" && (
                 <motion.button
                   whileTap={{ scale: 0.97 }}
                   onClick={handleOpenAdd}
-                  className="btn bg-brand-ink text-white font-extrabold text-sm px-8 py-3 rounded-full shadow-md hover:shadow-lg transition duration-200 mt-2 inline-flex items-center gap-2"
+                  className="relative inline-flex items-center justify-center mt-8 px-6 py-1.5 rounded-full bg-brand-ink text-white font-normal text-lg shadow-[0_4px_18px_rgba(30,30,30,0.09)]"
                 >
-                  <Plus size={16} />
                   Nuevo Gasto
                 </motion.button>
               )}
+
             </header>
 
             {/* Visual Chart Breakdown */}
