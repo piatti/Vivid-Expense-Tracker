@@ -406,6 +406,57 @@ export default function MoneyTrackerClient({
 
             </header>
 
+
+            {/* Yearly Chart Evolve */}
+            {currentView === "yearly" && (
+              <section className="mb-6 bg-white p-5 rounded-[28px] border border-brand-ink/5 shadow-sm">
+                <h2 className="text-[11px] uppercase tracking-widest font-extrabold text-brand-ink/60 mb-2">
+                  Evolución mensual
+                </h2>
+                {renderYearlyChart()}
+              </section>
+            )}
+
+            {/* Categories Breakdown List */}
+            <section className="flex flex-col mb-2">
+              <h2 className="text-xs uppercase tracking-tight font-medium text-brand-ink/60 mb-2 px-1">
+                Por categoría
+              </h2>
+              {sortedCategoryBreakdown.length > 0 ? (
+                <div className="bg-[#FAFAFA]/80 rounded-[32px] px-5 py-5 flex flex-col">
+                  {sortedCategoryBreakdown.map((cat, index) => (
+                    <motion.div
+                      key={cat.id}
+                      whileTap={{ scale: 0.99 }}
+                      onClick={() => currentView === "monthly" && setSelectedCategoryDetail(cat.id)}
+                      className={`flex justify-between items-center py-3 ${
+                        index !== 0 ? "border-t-2 border-brand-ink/30" : ""
+                      } ${currentView === "monthly" ? "cursor-pointer" : "pointer-events-none"}`}
+                    >
+                      <div className="flex items-center gap-2">
+                        <span className="text-lg">{cat.emoji}</span>
+                        <div className="flex flex-col">
+                          <span className="font-semibold text-brand-ink text-sm capitalize">{cat.name}</span>
+                          {currentView === "yearly" && (
+                            <span className="text-[9px] font-bold text-brand-ink/20 uppercase tracking-wider">
+                              {((cat.value / totalAmount) * 100).toFixed(0)}% del año
+                            </span>
+                          )}
+                        </div>
+                      </div>
+                      <div className="font-semibold text-sm text-brand-ink">
+                        ${cat.value.toLocaleString("es-AR", { maximumFractionDigits: 0 })}
+                      </div>
+                    </motion.div>
+                  ))}
+                </div>
+              ) : (
+                <div className="flex items-center justify-center min-h-12 bg-[#FAFAFA]/80 rounded-2xl text-xs text-brand-ink/60 font-bold opacity-60">
+                  Sin gastos registrados aún
+                </div>
+              )}
+            </section>
+
             {/* Visual Chart Breakdown */}
             {currentView === "monthly" && (
               <section className="mb-6 bg-white p-5 rounded-[28px] border border-brand-ink/5 shadow-sm">
@@ -450,56 +501,6 @@ export default function MoneyTrackerClient({
                 )}
               </section>
             )}
-
-            {/* Yearly Chart Evolve */}
-            {currentView === "yearly" && (
-              <section className="mb-6 bg-white p-5 rounded-[28px] border border-brand-ink/5 shadow-sm">
-                <h2 className="text-[11px] uppercase tracking-widest font-extrabold text-brand-ink/60 mb-2">
-                  Evolución mensual
-                </h2>
-                {renderYearlyChart()}
-              </section>
-            )}
-
-            {/* Categories Breakdown List */}
-            <section className="flex-1 flex flex-col mb-8">
-              <h2 className="text-[11px] uppercase tracking-widest font-extrabold text-brand-ink/60 mb-3 px-1">
-                Distribución por categoría
-              </h2>
-              {sortedCategoryBreakdown.length > 0 ? (
-                <div className="flex flex-col gap-2.5">
-                  {sortedCategoryBreakdown.map((cat) => (
-                    <motion.div
-                      key={cat.id}
-                      whileTap={{ scale: 0.99 }}
-                      onClick={() => currentView === "monthly" && setSelectedCategoryDetail(cat.id)}
-                      className={`bg-white p-4.5 rounded-[18px] flex justify-between items-center border border-brand-ink/5 hover:border-brand-ink/15 transition-all shadow-sm ${
-                        currentView === "monthly" ? "cursor-pointer" : "pointer-events-none"
-                      }`}
-                    >
-                      <div className="flex items-center gap-3">
-                        <span className="text-2xl">{cat.emoji}</span>
-                        <div className="flex flex-col">
-                          <span className="font-bold text-brand-ink text-sm capitalize">{cat.name}</span>
-                          {currentView === "yearly" && (
-                            <span className="text-[9px] font-bold text-brand-ink/60 uppercase tracking-wider">
-                              {((cat.value / totalAmount) * 100).toFixed(0)}% del año
-                            </span>
-                          )}
-                        </div>
-                      </div>
-                      <div className="font-extrabold text-sm text-brand-ink">
-                        ${cat.value.toLocaleString("es-AR", { maximumFractionDigits: 0 })}
-                      </div>
-                    </motion.div>
-                  ))}
-                </div>
-              ) : (
-                <div className="text-center py-16 bg-white rounded-[28px] border border-brand-ink/5 shadow-sm text-xs text-brand-ink/60 font-bold opacity-60">
-                  Sin gastos registrados aún
-                </div>
-              )}
-            </section>
 
             {/* CSV Export Button */}
             <button
