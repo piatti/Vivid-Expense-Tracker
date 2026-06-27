@@ -44,6 +44,8 @@ yarn-error.log*
 .env
 .env.local
 .env*.local
+scripts/seed-test-categories.ts
+
 
 # vercel
 .vercel
