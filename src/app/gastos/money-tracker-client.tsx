@@ -459,12 +459,12 @@ export default function MoneyTrackerClient({
 
             {/* Visual Chart Breakdown */}
             {currentView === "monthly" && (
-              <section className="mb-6 bg-white p-5 rounded-[28px] border border-brand-ink/5 shadow-sm">
-                <h2 className="text-[11px] uppercase tracking-widest font-extrabold text-brand-ink/60 mb-3">
+              <section className="mb-2 flex flex-col">
+                <h2 className="text-xs uppercase tracking-tight font-medium text-brand-ink/60 mb-2 px-1">
                   Análisis mensual
                 </h2>
                 {totalAmount > 0 ? (
-                  <div>
+                  <div className="bg-[#FAFAFA]/80 rounded-[32px] px-5 py-5">
                     <div className="h-10 w-full bg-[#FAFAFA] rounded-xl flex overflow-hidden border border-brand-ink/5 shadow-inner">
                       {sortedCategoryBreakdown.map((cat) => {
                         const percentage = (cat.value / totalAmount) * 100;
@@ -730,7 +730,7 @@ export default function MoneyTrackerClient({
                   <button
                     type="button"
                     onClick={() => setIsExpenseModalOpen(false)}
-                    className="w-full border-2 border-brand-ink/60/25 text-brand-ink/60 font-extrabold py-3.5 rounded-full text-xs uppercase tracking-wider bg-transparent hover:bg-[#FAFAFA] transition"
+                    className="w-full border-2 border-brand-ink/25 text-brand-ink/60 font-extrabold py-3.5 rounded-full text-xs uppercase tracking-wider bg-transparent hover:bg-[#FAFAFA] transition"
                   >
                     Cancelar
                   </button>
@@ -811,7 +811,7 @@ export default function MoneyTrackerClient({
                   <button
                     type="button"
                     onClick={() => setIsNewCatModalOpen(false)}
-                    className="w-full border-2 border-brand-ink/60/25 text-brand-ink/60 font-extrabold py-3 rounded-full text-xs uppercase tracking-wider bg-transparent hover:bg-[#FAFAFA] transition"
+                    className="w-full border-2 border-brand-ink/25 text-brand-ink/60 font-extrabold py-3 rounded-full text-xs uppercase tracking-wider bg-transparent hover:bg-[#FAFAFA] transition"
                   >
                     Cancelar
                   </button>
@@ -854,7 +854,7 @@ export default function MoneyTrackerClient({
                 <button
                   type="button"
                   onClick={() => setIsConfirmDeleteOpen(false)}
-                  className="flex-1 border-2 border-brand-ink/60/25 text-brand-ink/60 font-extrabold py-3 rounded-full text-xs uppercase tracking-wider bg-transparent hover:bg-[#FAFAFA]"
+                  className="flex-1 border-2 border-brand-ink/25 text-brand-ink/60 font-extrabold py-3 rounded-full text-xs uppercase tracking-wider bg-transparent hover:bg-[#FAFAFA]"
                 >
                   No
                 </button>
